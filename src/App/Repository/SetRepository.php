@@ -188,7 +188,7 @@ class SetRepository extends OhanzeeRepository implements SetRepositoryContract
 	// SetRepository
 	public function deleteSetPost($set_id, $post_id)
 	{
-		\DB::delete('posts_sets')
+		\Ohanzee\DB::delete('posts_sets')
 			->where('post_id', '=', $post_id)
 			->where('set_id', '=', $set_id)
 			->execute($this->db);
@@ -197,7 +197,7 @@ class SetRepository extends OhanzeeRepository implements SetRepositoryContract
 	// SetRepository
 	public function setPostExists($set_id, $post_id)
 	{
-		$result = \DB::select('posts_sets.*')
+		$result = \Ohanzee\DB::select('posts_sets.*')
 			->from('posts_sets')
 			->where('post_id', '=', $post_id)
 			->where('set_id', '=', $set_id)
@@ -215,7 +215,7 @@ class SetRepository extends OhanzeeRepository implements SetRepositoryContract
 		$post_id = (int)$post_id;
 		$set_id = (int)$set_id;
 
-		\DB::insert('posts_sets')
+		\Ohanzee\DB::insert('posts_sets')
 			->columns(['post_id', 'set_id'])
 			->values(array_values(compact('post_id', 'set_id')))
 			->execute($this->db);

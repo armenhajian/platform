@@ -11,7 +11,7 @@
 
 namespace Ushahidi\App\Repository;
 
-use DB;
+use Ohanzee\DB;
 use Ushahidi\Core\Entity;
 use Ushahidi\Core\Entity\FormRepository as FormRepositoryContract;
 use Ushahidi\Core\Entity\FormAttributeRepository as FormAttributeRepositoryContract;
@@ -89,7 +89,7 @@ class PostRepository extends OhanzeeRepository implements
 	 * @param Aura\DI\InstanceFactory               $bounding_box_factory
 	 */
 	public function __construct(
-        \Database $db,
+        \Ohanzee\Database $db,
         FormAttributeRepositoryContract $form_attribute_repo,
         FormStageRepositoryContract $form_stage_repo,
         FormRepositoryContract $form_repo,

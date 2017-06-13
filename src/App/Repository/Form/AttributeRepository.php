@@ -50,11 +50,11 @@ class AttributeRepository extends OhanzeeRepository implements
 	 * @param FormRepository                   $form_repo
 	 */
 	public function __construct(
-        \Database $db,
+        \Ohanzee\Database $db,
         FormStageRepositoryContract $form_stage_repo,
         FormRepositoryContract $form_repo
     ) {
-	
+
 		parent::__construct($db);
 
 		$this->form_stage_repo = $form_stage_repo;

@@ -123,7 +123,7 @@ abstract class ValueRepository extends OhanzeeRepository implements
 	// UpdatePostValueRepository
 	public function deleteNotIn($post_id, array $ids)
 	{
-		\DB::delete($this->getTable())
+		\Ohanzee\DB::delete($this->getTable())
 			->where('post_id', '=', $post_id)
 			->where('id', 'NOT IN', $ids)
 			->execute($this->db);

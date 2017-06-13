@@ -21,7 +21,7 @@ class PointRepository extends ValueRepository
 {
 	protected $decoder;
 
-	public function __construct(\Database $db, WKT $decoder)
+	public function __construct(\Ohanzee\Database $db, WKT $decoder)
 	{
 		$this->db = $db;
 		$this->decoder = $decoder;
@@ -57,7 +57,7 @@ class PointRepository extends ValueRepository
 		$query->select(
 				$this->getTable().'.*',
 				// Fetch AsText(value) aliased to value
-				[\DB::expr('AsText(value)'), 'value']
+				[\Ohanzee\DB::expr('AsText(value)'), 'value']
 			);
 
 		return $query;
@@ -67,7 +67,7 @@ class PointRepository extends ValueRepository
 	{
 		if (is_array($value)) {
 			$value = array_map('floatval', $value);
-			$value = \DB::expr("GeomFromText('POINT(lon lat)')")->parameters($value);
+			$value = \Ohanzee\DB::expr("GeomFromText('POINT(lon lat)')")->parameters($value);
 		} else {
 			$value = null;
 		}

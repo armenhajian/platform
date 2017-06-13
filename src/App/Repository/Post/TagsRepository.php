@@ -23,7 +23,7 @@ class TagsRepository extends ValueRepository
 	 * @param TagRepo               $tag_repo
 	 */
 	public function __construct(
-        \Database $db,
+        \Ohanzee\Database $db,
         UpdatePostTagRepository $tag_repo
     ) {
 		parent::__construct($db);

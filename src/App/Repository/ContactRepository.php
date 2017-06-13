@@ -130,7 +130,7 @@ class ContactRepository extends OhanzeeRepository implements
 	// ContactRepository
 	public function getNotificationContacts($set_id, $limit = false, $offset = 0)
 	{
-		$query = \DB::select('contacts.id', 'contacts.type', 'contacts.contact')
+		$query = \Ohanzee\DB::select('contacts.id', 'contacts.type', 'contacts.contact')
 			->distinct(true)
 			->from('contacts')
 			->join('notifications')

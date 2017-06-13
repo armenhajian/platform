@@ -31,7 +31,7 @@ class GeometryRepository extends ValueRepository
 		$query->select(
 				$this->getTable().'.*',
 				// Fetch AsText(value) aliased to value
-				[\DB::expr('AsText(value)'), 'value']
+				[\Ohanzee\DB::expr('AsText(value)'), 'value']
 			);
 
 		return $query;
@@ -40,7 +40,7 @@ class GeometryRepository extends ValueRepository
 	// Override createValue to save 'value' using GeomFromText
 	public function createValue($value, $form_attribute_id, $post_id)
 	{
-		$value = \DB::expr('GeomFromText(:text)')->param(':text', $value);
+		$value = \Ohanzee\DB::expr('GeomFromText(:text)')->param(':text', $value);
 
 		return parent::createValue($value, $form_attribute_id, $post_id);
 	}
@@ -48,7 +48,7 @@ class GeometryRepository extends ValueRepository
 	// Override updateValue to save 'value' using GeomFromText
 	public function updateValue($id, $value)
 	{
-		$value = \DB::expr('GeomFromText(:text)')->param(':text', $value);
+		$value = \Ohanzee\DB::expr('GeomFromText(:text)')->param(':text', $value);
 
 		return parent::updateValue($id, $value);
 	}

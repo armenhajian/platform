@@ -66,7 +66,7 @@ class RoleRepository extends OhanzeeRepository implements
 		// Assuming all entites have the same form id
 		$this->deleteAllForForm(current($entities)->form_id);
 
-		$query = \DB::insert($this->getTable())
+		$query = \Ohanzee\DB::insert($this->getTable())
 			->columns(array_keys(current($entities)->asArray()));
 
 		foreach ($entities as $entity) {

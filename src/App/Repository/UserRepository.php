@@ -163,7 +163,7 @@ class UserRepository extends OhanzeeRepository implements
 		];
 
 		// Save the token
-		$query = \DB::insert('user_reset_tokens')
+		$query = \Ohanzee\DB::insert('user_reset_tokens')
 			->columns(array_keys($input))
 			->values(array_values($input))
 			->execute($this->db);
@@ -174,7 +174,7 @@ class UserRepository extends OhanzeeRepository implements
 	// ResetPasswordRepository
 	public function isValidResetToken($token)
     {
-		$result = \DB::select([\DB::expr('COUNT(*)'), 'total'])
+		$result = \Ohanzee\DB::select([\Ohanzee\DB::expr('COUNT(*)'), 'total'])
 			->from('user_reset_tokens')
 			->where('reset_token', '=', $token)
 			->where('created', '>', time() - 1800) // Expire tokens after less than 30 mins
@@ -188,7 +188,7 @@ class UserRepository extends OhanzeeRepository implements
 	// ResetPasswordRepository
 	public function setPassword($token, $password)
     {
-		$sub = \DB::select('user_id')
+		$sub = \Ohanzee\DB::select('user_id')
 			->from('user_reset_tokens')
 			->where('reset_token', '=', $token);
 
@@ -200,7 +200,7 @@ class UserRepository extends OhanzeeRepository implements
 	// ResetPasswordRepository
 	public function deleteResetToken($token)
     {
-		$result = \DB::delete('user_reset_tokens')
+		$result = \Ohanzee\DB::delete('user_reset_tokens')
 			->where('reset_token', '=', $token)
 			->execute($this->db);
 	}

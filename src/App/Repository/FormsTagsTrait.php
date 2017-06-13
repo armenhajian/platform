@@ -16,7 +16,7 @@ trait FormsTagsTrait
     //returning tags for a specific Form-id
     private function getTagsForForm($id)
     {
-        $attributes = \DB::select('form_attributes.options')
+        $attributes = \Ohanzee\DB::select('form_attributes.options')
             ->from('form_attributes')
             ->join('form_stages')->on('form_stage_id', '=', 'form_stages.id')
             ->join('forms')->on('form_id', '=', 'forms.id')
@@ -40,7 +40,7 @@ trait FormsTagsTrait
     private function removeTagFromAttributeOptions($id)
     {
         // Grab all tags attributes
-        $attr = \DB::select('id', 'options')
+        $attr = \Ohanzee\DB::select('id', 'options')
             ->from('form_attributes')
             ->where('type', '=', 'tags')
             ->execute($this->db)
@@ -55,7 +55,7 @@ trait FormsTagsTrait
                 $options = json_encode($options);
 
                 // Save it
-                \DB::update('form_attributes')
+                \Ohanzee\DB::update('form_attributes')
                     ->set(array('options' => $options))
                     ->where('id', '=', $attr_id)
                     ->execute($this->db);
