@@ -80,4 +80,18 @@ class FeatureContext implements SnippetAcceptingContext
 		$config = \Kohana::$config->load('features');
 		$config->set('data-import.enabled', false);
 	}
+
+	/** @BeforeScenario @cdnEnabled */
+	public function enableCdn()
+	{
+		$config = \Kohana::$config->load('cdn');
+		$config->set('baseurl', 'http://some.madeup.cdn/');
+	}
+
+	/** @AfterScenario @cdnEnabled */
+	public function disableCdn()
+	{
+		$config = \Kohana::$config->load('cdn');
+		$config->set('baseurl', false);
+	}
 }

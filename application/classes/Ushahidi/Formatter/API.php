@@ -20,6 +20,7 @@ class Ushahidi_Formatter_API implements Formatter
 	// Formatter
 	public function __invoke($entity)
 	{
+		Kohana::$log->add(Log::ERROR, print_r($entity, true));
 		if (!($entity instanceof Entity))
 			throw new FormatterException("API formatter requries an Entity as input");
 
